@@ -30,7 +30,7 @@ const Card = ({
   const left = textAlign === "left";
   return (
     <div
-      className={`relative flex h-[341px] w-full ${left ? "justify-start" : "justify-end"} rounded-[30px] px-[35px] text-[#FAFAFA]`}
+      className={`relative flex h-[341px] w-full ${left ? "justify-start" : "justify-end"} rounded-[32px] px-[35px] text-[#FAFAFA]`}
       style={{ backgroundColor: bgColor }}
     >
       <div className={`my-[58px] ${left ? "text-left" : "text-right"}`}>
