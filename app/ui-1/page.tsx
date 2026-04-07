@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "./_components/card";
 
 const Ui1Task = () => {
   return (
@@ -8,7 +9,7 @@ const Ui1Task = () => {
       </p>
       <div className="px-[113.5px]">
         <div className="mb-[48px] flex flex-col gap-[24px]">
-          <p className="text-[24px] font-medium text-[#414141]">
+          <p className="text-[24px] leading-[1] font-medium text-[#414141]">
             Your SkillShikshya Journey
           </p>
 
@@ -19,7 +20,87 @@ const Ui1Task = () => {
           </h1>
         </div>
 
-        <div className="grid grid-cols-2 gap-8"></div>
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10">
+          <Card
+            textAlign="right"
+            textWidth={351}
+            bgColor="#F45B5B"
+            title="Start with Clarity"
+            subTitle="Step into a better learning path."
+            description="
+                Overwhelmed by too many learning options? SkillShikshya provides
+                a clear, curated roadmap from the start. Whether you're a
+                beginner or upskilling, we have a path tailored to your growth."
+            image={{
+              src: "/images/card1.svg",
+              alt: "Descriptive alt text",
+              width: 257.38,
+              height: 338.59,
+              position: {
+                top: 22,
+                left: -49,
+              },
+            }}
+          />
+          <Card
+            textAlign="left"
+            textWidth={351}
+            bgColor="#5492A0"
+            title="Learn by Doing"
+            subTitle="Practical skills, real projects."
+            description="
+                Theory is great, but action is better. At SkillShikshya, you learn by doing. Hands-on projects and real-world scenarios help you build, break, and create—leading to true mastery."
+            image={{
+              src: "/images/card2.svg",
+              alt: "Descriptive alt text",
+              width: 180.35,
+              height: 367,
+              position: {
+                top: 14,
+                left: 380,
+              },
+            }}
+          />
+          <Card
+            textAlign="right"
+            textWidth={311}
+            bgColor="#6C64A8"
+            title="Get Mentored & Supported"
+            subTitle="Step into a better learning path."
+            description="
+                Stuck or need feedback? SkillShikshya’s community of mentors and learners has your back with live support, interactive discussions, and expert insights. You’re never on your own."
+            image={{
+              src: "/images/card3.svg",
+              alt: "Descriptive alt text",
+              width: 307,
+              height: 259,
+              position: {
+                top: 106,
+                left: -49,
+              },
+            }}
+          />
+          <Card
+            textAlign="left"
+            textWidth={337}
+            bgColor="#A88964"
+            title="Achieve & Showcase"
+            subTitle="Build your portfolio, get job-ready."
+            description="
+               Your journey ends with achievement. Each completed project builds a portfolio showcasing your skills and job readiness, bringing you closer to that dream job, promotion, or your own venture."
+            image={{
+              src: "/images/card4.svg",
+              alt: "Descriptive alt text",
+              width: 307,
+              height: 259,
+              position: {
+                top: 53.56,
+                left: 317.66,
+                rotate: -4,
+              },
+            }}
+          />
+        </div>
       </div>
     </>
   );
