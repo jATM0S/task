@@ -1,21 +1,30 @@
+import NavCard from "./_components/nav-card";
+
 export default function Home() {
   return (
-    <div className="px-[113.5px]">
-      <div className="font-note mt-[53px] mb-[22px] text-[32px] font-medium text-[#333333]">
-        Note: Hover the component to view the animation & Click the arrow icon
-      </div>
-
-      <div className="mb-[48px] flex flex-col gap-[24px]">
-        <p className="text-[24px] font-medium text-[#414141]">
-          Your SkillShikshya Journey
+    <main className="min-h-dvh p-8">
+      <header className="mb-10">
+        <p className="font-note mt-[24px] mb-[12px] text-[20px] font-medium text-[#333333]">
+          Select a UI page to preview.
         </p>
 
-        <p className="font-heading text-[32px] leading-[1.2] font-bold">
-          <span className="text-[#1DA077]">Step</span> In.{" "}
-          <span className="text-[#1DA077]">Skill</span> Up.{" "}
-          <span className="text-[#1DA077]">Stand</span> Out. 🚀
-        </p>
-      </div>
-    </div>
+        <h1 className="font-heading text-[36px] leading-[1.2] font-bold">
+          <span className="text-[#1DA077]">UI</span> Pages
+        </h1>
+      </header>
+
+      <section className="grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
+        <NavCard
+          href="/ui-1"
+          title="UI Page 1"
+          description="Navigate to the first UI screen."
+        />
+        <NavCard
+          href="/ui-2"
+          title="UI Page 2"
+          description="Navigate to the second UI screen."
+        />
+      </section>
+    </main>
   );
 }
