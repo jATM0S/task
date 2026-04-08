@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
@@ -25,6 +25,7 @@ const ImagesSection = ({
   ids: string[];
   id: string;
 }) => {
+  const isFirstRender = useRef(true);
   const imgRef = useRef<HTMLDivElement | null>(null);
   const prevIdRef = useRef<string>(id);
 
@@ -47,8 +48,22 @@ const ImagesSection = ({
   const clickedOffFromYourParentDiv = () => {
     return prevIdRef.current == id;
   };
-
+  useLayoutEffect(() => {
+    // on first render, just set visibility based on whether this box is active
+    if (prevIdRef.current === activeId) {
+      gsap.set(imgRef.current, { x: 0, opacity: 1 });
+      return;
+    } else {
+      gsap.set(imgRef.current, { x: -300, opacity: 0 });
+      return;
+    }
+  }, []);
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      prevIdRef.current = activeId;
+      return; // skip animation on mount, let the first useEffect handle it and but set the ref to not have issues when clicking other boxes
+    }
     // we got two functions get direction and clicked off from your parent div. if clickedOffFromYourParentDiv is true, we need to get the direction where it was clicked off. Then animate the images to that direction. Similary if the clickedOffFromYourParentDiv is false and active element is your parent div, we need to animate the images to the center. The images should animate to the right if the direction is right, to the left if the direction is left.
 
     // clicked off from parent div then get the direction and animate images to that direction == animate to the direction
@@ -60,8 +75,10 @@ const ImagesSection = ({
     console.log("where to animate to:", whereToAnimateTo());
     console.log("where to animate from:", whereToAnimateFrom());
 
+    if (!imgRef.current) return;
+
     if (clickedOffFromYourParentDiv()) {
-      // This box was active, now lost focus and animate out
+      // this box was active: now lost focus and animate out
       const direction = whereToAnimateTo();
       const xTarget =
         direction === "right" ? 300 : direction === "left" ? -300 : 0;
@@ -73,7 +90,7 @@ const ImagesSection = ({
         ease: "power2.inOut",
       });
     } else if (activeId === id) {
-      // This box just became active — animate in from opposite direction
+      // this box just became active: animate in from opposite direction
       const direction = whereToAnimateFrom();
       const xFrom =
         direction === "right" ? 300 : direction === "left" ? -300 : 0;
@@ -90,6 +107,7 @@ const ImagesSection = ({
   return (
     <div
       ref={imgRef}
+      style={{ opacity: 0 }} // start invisible to prevent images to flash, GSAP will set it correctly before paint
       className="pointer-events-none absolute top-[126px] left-[66px] z-10 flex h-[94px] w-[460px] justify-between gap-[42px]"
     >
       {images.map((src, index) => (
