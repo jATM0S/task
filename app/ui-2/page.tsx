@@ -3,7 +3,9 @@ import PageHeader from "@/components/page-header";
 import { useState, useRef } from "react";
 import gsap from "gsap";
 import Box1 from "./_components/box1";
+import Box2 from "./_components/box2";
 import Box3 from "./_components/box3";
+import ImagesSection from "./_components/images-section";
 
 const Ui2Task = () => {
   const [activeId, setActiveId] = useState<string>("one");
@@ -40,7 +42,7 @@ const Ui2Task = () => {
   const ids = ["one", "two", "three"];
   const boxMap: Record<string, any> = {
     one: Box1,
-    two: Box3,
+    two: Box2,
     three: Box3,
   };
 
@@ -55,7 +57,7 @@ const Ui2Task = () => {
           <span className="text-[#1DA077]"> What’s Hot Right Now! 🔥</span>
         </PageHeader>
 
-        <div className="flex h-[461px] items-start gap-8 bg-black">
+        <div className="relative flex h-[461px] items-start gap-8 bg-black">
           {ids.map((id) => {
             const active = activeId === id;
             const Component = boxMap[id];
@@ -70,6 +72,7 @@ const Ui2Task = () => {
                 className={`text-secondary bg-primary relative h-full cursor-pointer rounded-[32px]`}
               >
                 <Component active={active} />
+                <ImagesSection id={activeId} ids={ids} />
               </div>
             );
           })}

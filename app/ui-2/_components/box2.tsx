@@ -3,31 +3,13 @@
 import gsap from "gsap";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-const images = [
-  { src: "/images/react.svg", alt: "React", height: 75, width: 75 },
-  { src: "/images/likes.svg", alt: "Likes", height: 75, width: 75 },
-  { src: "/images/vue.svg", alt: "Vue", height: 75, width: 75 },
-  {
-    src: "/images/penpencil.svg",
-    alt: "Pen and Pencil",
-    height: 75,
-    width: 75,
-  },
-];
-const Box3 = ({ active = false }: { active: boolean }) => {
-  const imgRef = useRef<HTMLImageElement | null>(null);
+
+const Box2 = ({ active = false }: { active: boolean }) => {
   const descriptionRef = useRef<HTMLDivElement | null>(null);
   const numberRef = useRef<HTMLParagraphElement | null>(null);
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    // gsap.to(imgRef.current, {
-    //   keyframes: [
-    //     { x: 620, duration: 0.3, ease: "power1.out" },
-    //     { x: 250, duration: 0.5, ease: "power2.inOut" },
-    //     { x: 280, duration: 0.5, ease: "power2.inOut" },
-    //   ],
-    // });
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
@@ -70,7 +52,7 @@ const Box3 = ({ active = false }: { active: boolean }) => {
       });
       gsap.to(numberRef.current, {
         keyframes: [
-          { x: -5, duration: 0.3, ease: "power1.out" },
+          { x: 20, duration: 0.3, ease: "power1.out" },
           { x: 5, duration: 0.5, ease: "power2.inOut" },
           { x: 0, duration: 0.5, ease: "power2.inOut" },
         ],
@@ -93,45 +75,31 @@ const Box3 = ({ active = false }: { active: boolean }) => {
         />
       </div>
 
-      {/* <div
-        ref={imgRef}
-        className="absolute top-[126px] left-[66px] flex h-[94px] w-[460px] justify-between gap-[42px]"
-      >
-        {images.map((src, index) => (
-          <Image
-            key={index}
-            src={src.src}
-            alt={src.alt}
-            height={src.height}
-            width={src.width}
-          />
-        ))}
-      </div> */}
       <div ref={numberRef}>
         <p
-          className={`font-heading absolute top-[283px] left-[46px] text-center text-[150px] font-bold`}
+          className={`font-heading absolute top-[283px] left-[26px] text-center text-[150px] font-bold`}
         >
-          10
+          05
         </p>
-        <p className="font-heading absolute top-[275px] left-[206px] text-center text-[64px] font-bold">
+        <p className="font-heading absolute top-[275px] left-[227px] text-center text-[64px] font-bold">
           +
         </p>
       </div>
 
       <div
         ref={descriptionRef}
-        className={`- absolute top-[85px] left-[24px] flex -rotate-z-90 ${active ? "w-[278px]" : "w-[218px]"} flex-col gap-3`}
+        className={`- absolute top-[85px] left-[34px] flex -rotate-z-90 ${active ? "w-[278px]" : "w-[218px]"} flex-col gap-3`}
       >
         <p className="w-full text-[32px] font-bold whitespace-nowrap">
-          Ongoing{!active && <br />} Courses
+          Upcoming{!active && <br />} Courses
         </p>
         <p className={`w-full text-[18px]`}>
-          currently happening—don’t
-          <br /> miss out on the action!
+          exciting new courses {!active && <br />} waiting to
+          {active && <br />} boost your skills.
         </p>
       </div>
     </>
   );
 };
 
-export default Box3;
+export default Box2;
