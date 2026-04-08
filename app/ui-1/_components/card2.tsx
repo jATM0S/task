@@ -1,55 +1,35 @@
-import React from "react";
+"use client";
+import { useEffect, useState } from "react";
+import Card2default from "./card2default";
 import CircularSubstraction from "./circular-substraction";
-import Image from "next/image";
-import Card from "./card";
 import CardButtons from "./card-buttons";
+import Image from "next/image";
 
 const Card2 = () => {
+  const [secondCard, setSecondCard] = useState(false);
+  useEffect(() => {
+    console.log(secondCard);
+  }, [secondCard]);
   return (
     <div className="group relative h-[341px]">
-      {/* <div className="absolute inset-0 rounded-[30px] bg-[#F45B5B] opacity-0 transition-all duration-700 group-hover:opacity-100"> */}
-      <div className="absolute inset-0 rounded-[30px]">
+      {secondCard ? (
         <div className="absolute inset-0 flex overflow-hidden rounded-[32px] bg-[#5492A0]">
           <CircularSubstraction backgroundColor="#5492A0" />
-          {/* button was extracted due to stacking context issue the image would be on top of the button */}
-          <CardButtons />
-
-          <div className="z-10 mt-[36px] ml-[80px]">
-            <p className="font-heading max-w-[241px] text-[20px] leading-[1.2] font-bold text-white">
-              Focused faces—learning mode: ON!{" "}
-            </p>
-          </div>
+          <CardButtons onPrevClick={() => setSecondCard(false)} />
+          <p className="font-heading z-10 mx-auto mt-[41px] text-center text-[20px] leading-[1.2] font-bold text-white">
+            Laptops, lessons, and a whole lot of <br /> growth!
+          </p>
           <Image
-            src="/images/focused.png"
+            src="/images/group.png"
             alt="Descriptive alt text"
-            fill
-            className="object-cover object-bottom"
-            style={{ position: "absolute", top: 34, left: 44, zIndex: 0 }}
+            width={572}
+            height={329}
+            className="absolute top-[24px] left-[10px]"
           />
         </div>
-      </div>
-
-      {/* <div className="z-10 transition-all duration-700 group-hover:-translate-x-full group-hover:opacity-0">
-        <Card
-          textAlign="left"
-          textWidth={351}
-          bgColor="#5492A0"
-          title="Learn by Doing"
-          subTitle="Practical skills, real projects."
-          description="
-                Theory is great, but action is better. At SkillShikshya, you learn by doing. Hands-on projects and real-world scenarios help you build, break, and create—leading to true mastery."
-          image={{
-            src: "/images/card2.svg",
-            alt: "Descriptive alt text",
-            width: 180.35,
-            height: 367,
-            position: {
-              top: 14,
-              left: 380,
-            },
-          }}
-        />
-      </div> */}
+      ) : (
+        <Card2default onNextClick={() => setSecondCard(true)} />
+      )}
     </div>
   );
 };
