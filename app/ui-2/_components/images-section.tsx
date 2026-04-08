@@ -78,27 +78,38 @@ const ImagesSection = ({
     if (!imgRef.current) return;
 
     if (clickedOffFromYourParentDiv()) {
-      // this box was active: now lost focus and animate out
+      //   // this box was active: now lost focus and animate out
       const direction = whereToAnimateTo();
       const xTarget =
-        direction === "right" ? 300 : direction === "left" ? -300 : 0;
+        direction === "right" ? 700 : direction === "left" ? -700 : 0;
+      const xOpposite = direction === "right" ? -20 : 20; // slight pull to opposite side
+      const xOvershoot = direction === "right" ? 740 : -740; // overshoot past target
 
       gsap.to(imgRef.current, {
-        x: xTarget,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power2.inOut",
+        keyframes: [
+          { x: xOpposite, duration: 0.3, ease: "power1.out" }, // pull back
+          { x: xOvershoot, duration: 0.5, ease: "power2.inOut" }, // overshoot
+          { x: xTarget, duration: 0.5, ease: "power1.inOut" }, // settle
+        ],
       });
     } else if (activeId === id) {
-      // this box just became active: animate in from opposite direction
+      //   // this box just became active: animate in from opposite direction
       const direction = whereToAnimateFrom();
       const xFrom =
-        direction === "right" ? 300 : direction === "left" ? -300 : 0;
+        direction === "right" ? 700 : direction === "left" ? -700 : 0;
+      const xOpposite = direction === "right" ? -20 : 20; // overshoot past center
+      const xOvershoot = direction === "right" ? 740 : -740; // coming from far side
 
       gsap.fromTo(
         imgRef.current,
-        { x: xFrom, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1.5, ease: "power2.inOut" }
+        { x: xFrom, opacity: 1 },
+        {
+          keyframes: [
+            { x: xOvershoot, duration: 0.2, ease: "power1.out" }, // enter fast
+            { x: xOpposite, duration: 0.4, ease: "power2.inOut" }, // overshoot center
+            { x: 0, duration: 0.5, ease: "power1.inOut" }, // settle at center
+          ],
+        }
       );
     }
     prevIdRef.current = activeId;
