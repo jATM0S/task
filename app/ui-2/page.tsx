@@ -69,7 +69,7 @@ const Ui2Task = () => {
                 }}
                 onClick={() => handleClick(id)}
                 style={{ width: id === "one" ? 592 : 280 }}
-                className={`text-secondary bg-primary relative h-full cursor-pointer rounded-[32px]`}
+                className={`text-secondary bg-primary relative h-full cursor-pointer overflow-hidden rounded-[32px]`}
               >
                 <Component active={active} />
                 <ImagesSection activeId={activeId} ids={ids} id={id} />

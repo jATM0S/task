@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
 
 const images = [
   { src: "/images/react.svg", alt: "React", height: 75, width: 75 },
@@ -58,13 +59,38 @@ const ImagesSection = ({
     console.log("clicked off your parent div:", clickedOffFromYourParentDiv());
     console.log("where to animate to:", whereToAnimateTo());
     console.log("where to animate from:", whereToAnimateFrom());
+
+    if (clickedOffFromYourParentDiv()) {
+      // This box was active, now lost focus and animate out
+      const direction = whereToAnimateTo();
+      const xTarget =
+        direction === "right" ? 300 : direction === "left" ? -300 : 0;
+
+      gsap.to(imgRef.current, {
+        x: xTarget,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.inOut",
+      });
+    } else if (activeId === id) {
+      // This box just became active — animate in from opposite direction
+      const direction = whereToAnimateFrom();
+      const xFrom =
+        direction === "right" ? 300 : direction === "left" ? -300 : 0;
+
+      gsap.fromTo(
+        imgRef.current,
+        { x: xFrom, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1.5, ease: "power2.inOut" }
+      );
+    }
     prevIdRef.current = activeId;
   }, [activeId, getDirection]);
 
   return (
     <div
       ref={imgRef}
-      className="absolute top-[126px] left-[66px] z-10 flex h-[94px] w-[460px] justify-between gap-[42px]"
+      className="pointer-events-none absolute top-[126px] left-[66px] z-10 flex h-[94px] w-[460px] justify-between gap-[42px]"
     >
       {images.map((src, index) => (
         <Image

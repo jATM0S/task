@@ -3,30 +3,12 @@
 import gsap from "gsap";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-const images = [
-  { src: "/images/react.svg", alt: "React", height: 75, width: 75 },
-  { src: "/images/likes.svg", alt: "Likes", height: 75, width: 75 },
-  { src: "/images/vue.svg", alt: "Vue", height: 75, width: 75 },
-  {
-    src: "/images/penpencil.svg",
-    alt: "Pen and Pencil",
-    height: 75,
-    width: 75,
-  },
-];
+
 const Box1 = ({ active }: { active: boolean }) => {
   const isFirstRender = useRef(true);
-  const imgRef = useRef<HTMLImageElement | null>(null);
   const descriptionRef = useRef<HTMLDivElement | null>(null);
   const numberRef = useRef<HTMLParagraphElement | null>(null);
   useEffect(() => {
-    // gsap.to(imgRef.current, {
-    //   keyframes: [
-    //     { x: 620, duration: 0.3, ease: "power1.out" },
-    //     { x: 250, duration: 0.5, ease: "power2.inOut" },
-    //     { x: 280, duration: 0.5, ease: "power2.inOut" },
-    //   ],
-    // });
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
@@ -92,20 +74,6 @@ const Box1 = ({ active }: { active: boolean }) => {
         />
       </div>
 
-      {/* <div
-        ref={imgRef}
-        className="absolute top-[126px] left-[66px] flex h-[94px] w-[460px] justify-between gap-[42px]"
-      >
-        {images.map((src, index) => (
-          <Image
-            key={index}
-            src={src.src}
-            alt={src.alt}
-            height={src.height}
-            width={src.width}
-          />
-        ))}
-      </div> */}
       <div ref={numberRef}>
         <p
           className={`font-heading absolute top-[283px] left-[75px] text-center text-[150px] font-bold`}
