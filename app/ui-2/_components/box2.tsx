@@ -14,8 +14,7 @@ const images = [
     width: 75,
   },
 ];
-const Box1 = ({ active }: { active: boolean }) => {
-  const isFirstRender = useRef(true);
+const Box2 = ({ active }: { active: boolean }) => {
   const imgRef = useRef<HTMLImageElement | null>(null);
   const descriptionRef = useRef<HTMLDivElement | null>(null);
   const numberRef = useRef<HTMLParagraphElement | null>(null);
@@ -27,10 +26,7 @@ const Box1 = ({ active }: { active: boolean }) => {
     //     { x: 280, duration: 0.5, ease: "power2.inOut" },
     //   ],
     // });
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
+
     if (active) {
       gsap.to(descriptionRef.current, {
         keyframes: [
@@ -133,4 +129,4 @@ const Box1 = ({ active }: { active: boolean }) => {
   );
 };
 
-export default Box1;
+export default Box2;
