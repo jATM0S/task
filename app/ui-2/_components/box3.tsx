@@ -14,10 +14,12 @@ const images = [
     width: 75,
   },
 ];
-const Box2 = ({ active }: { active: boolean }) => {
+const Box3 = ({ active = false }: { active: boolean }) => {
   const imgRef = useRef<HTMLImageElement | null>(null);
   const descriptionRef = useRef<HTMLDivElement | null>(null);
   const numberRef = useRef<HTMLParagraphElement | null>(null);
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
     // gsap.to(imgRef.current, {
     //   keyframes: [
@@ -26,37 +28,40 @@ const Box2 = ({ active }: { active: boolean }) => {
     //     { x: 280, duration: 0.5, ease: "power2.inOut" },
     //   ],
     // });
-
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (active) {
       gsap.to(descriptionRef.current, {
         keyframes: [
-          { x: -265, y: -210, rotate: -100, duration: 0.3, ease: "power1.out" },
-          { x: 0, y: 0, rotate: 10, duration: 0.5, ease: "power2.inOut" },
-          { x: 0, y: 0, rotate: 0, duration: 0.5, ease: "power2.inOut" },
+          { x: 0, y: 0, rotate: -100, duration: 0.3, ease: "power1.out" },
+          { x: 265, y: 210, rotate: 10, duration: 0.5, ease: "power2.inOut" },
+          { x: 265, y: 210, rotate: 0, duration: 0.5, ease: "power2.inOut" },
         ],
       });
       // animate the big number: nudge left, swing right, settle
       gsap.to(numberRef.current, {
         keyframes: [
-          { x: -40, duration: 0.25, ease: "power1.out" },
-          { x: 20, duration: 0.5, ease: "power2.inOut" },
-          { x: 0, duration: 0.5, ease: "power2.inOut" },
+          { x: 5, duration: 0.3, ease: "power1.out" },
+          { x: 30, duration: 0.5, ease: "power2.inOut" },
+          { x: 35, duration: 0.5, ease: "power2.inOut" },
         ],
       });
     } else {
       gsap.to(descriptionRef.current, {
         keyframes: [
-          { x: 0, y: 0, rotate: 10, duration: 0.3, ease: "power1.out" },
+          { x: 265, y: 210, rotate: 10, duration: 0.3, ease: "power1.out" },
           {
-            x: -265,
-            y: -210,
+            x: 0,
+            y: 0,
             rotate: -100,
             duration: 0.5,
             ease: "power2.inOut",
           },
           {
-            x: -265,
-            y: -200,
+            x: 0,
+            y: 0,
             rotate: -90,
             duration: 0.5,
             ease: "power2.inOut",
@@ -65,9 +70,9 @@ const Box2 = ({ active }: { active: boolean }) => {
       });
       gsap.to(numberRef.current, {
         keyframes: [
-          { x: 40, duration: 0.3, ease: "power1.out" },
-          { x: -40, duration: 0.5, ease: "power2.inOut" },
-          { x: -35, duration: 0.5, ease: "power2.inOut" },
+          { x: -5, duration: 0.3, ease: "power1.out" },
+          { x: 5, duration: 0.5, ease: "power2.inOut" },
+          { x: 0, duration: 0.5, ease: "power2.inOut" },
         ],
       });
     }
@@ -104,29 +109,29 @@ const Box2 = ({ active }: { active: boolean }) => {
       </div> */}
       <div ref={numberRef}>
         <p
-          className={`font-heading absolute top-[283px] left-[75px] text-center text-[150px] font-bold`}
+          className={`font-heading absolute top-[283px] left-[26px] text-center text-[150px] font-bold`}
         >
-          23
+          05
         </p>
-        <p className="font-heading absolute top-[275px] left-[262px] text-center text-[64px] font-bold">
+        <p className="font-heading absolute top-[275px] left-[227px] text-center text-[64px] font-bold">
           +
         </p>
       </div>
 
       <div
         ref={descriptionRef}
-        className="absolute top-[303px] left-[299px] flex w-[218px] flex-col gap-3"
+        className={`- absolute top-[103px] left-[34px] flex -rotate-z-90 ${active ? "w-[278px]" : "w-[218px]"} flex-col gap-3`}
       >
         <p className="w-full text-[32px] font-bold whitespace-nowrap">
-          All Courses
+          Upcoming{!active && <br />} Courses
         </p>
         <p className={`w-full text-[18px]`}>
-          courses you&apos;re powering <br />
-          through right now.
+          exciting new courses {!active && <br />} waiting to
+          {active && <br />} boost your skills.
         </p>
       </div>
     </>
   );
 };
 
-export default Box2;
+export default Box3;
