@@ -72,7 +72,7 @@ const Ui2Task = () => {
                 className={`text-secondary bg-primary relative h-full cursor-pointer rounded-[32px]`}
               >
                 <Component active={active} />
-                <ImagesSection id={activeId} ids={ids} />
+                <ImagesSection activeId={activeId} ids={ids} id={id} />
               </div>
             );
           })}

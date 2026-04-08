@@ -15,23 +15,41 @@ const images = [
   },
 ];
 
-const ImagesSection = ({ id, ids }: { id: string; ids: string[] }) => {
+const ImagesSection = ({
+  activeId,
+  ids,
+  id,
+}: {
+  activeId: string;
+  ids: string[];
+  id: string;
+}) => {
   const imgRef = useRef<HTMLDivElement | null>(null);
   const prevIdRef = useRef<string>(id);
-
   const getDirection = (from: string, to: string) => {
     const fromIndex = ids.indexOf(from);
-    prevIdRef.current = id;
+    prevIdRef.current = activeId;
     const toIndex = ids.indexOf(to);
 
     if (toIndex > fromIndex) return "right";
     if (toIndex < fromIndex) return "left";
     return "same";
   };
+  const clickedOffFromYourParentDiv = () => {
+    return prevIdRef.current !== id;
+  };
 
   useEffect(() => {
-    console.log(getDirection(id, prevIdRef.current));
-  }, [id, getDirection]);
+    // we got two functions get direction and clicked off from your parent div. if clickedOffFromYourParentDiv is true, we need to get the direction where it was clicked off. Then animate the images to that direction. Similary if the clickedOffFromYourParentDiv is false and active element is your parent div, we need to animate the images to the center. The images should animate to the right if the direction is right, to the left if the direction is left.
+
+    // clicked off from parent div then get the direction and animate images to that direction == animate to the direction
+    // !clicked off from your parent div and active element is your parnt div == animate to the center
+
+    console.log(id);
+    ``;
+    console.log(id, getDirection(activeId, prevIdRef.current));
+    console.log(id, clickedOffFromYourParentDiv());
+  }, [activeId, getDirection]);
 
   return (
     <div
