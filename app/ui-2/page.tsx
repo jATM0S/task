@@ -57,7 +57,7 @@ const Ui2Task = () => {
           <span className="text-[#1DA077]"> What’s Hot Right Now! 🔥</span>
         </PageHeader>
 
-        <div className="relative flex h-[461px] items-start gap-8 bg-black">
+        <div className="flex h-[461px] items-start gap-8">
           {ids.map((id) => {
             const active = activeId === id;
             const Component = boxMap[id];
@@ -71,6 +71,18 @@ const Ui2Task = () => {
                 style={{ width: id === "one" ? 592 : 280 }}
                 className={`text-secondary bg-primary relative h-full cursor-pointer overflow-hidden rounded-[32px]`}
               >
+                {/* circular clip-path visual in bottom-left */}
+                <div
+                  aria-hidden
+                  className="bg-secondary pointer-events-none absolute bottom-[-120px] left-[-150px] rounded-full"
+                  style={{
+                    width: 120,
+                    height: 120,
+                    transformOrigin: "left bottom",
+                    transform: active ? "scale(0)" : "scale(8)",
+                    transition: "transform 1300ms ease",
+                  }}
+                />
                 <Component active={active} />
                 <ImagesSection activeId={activeId} ids={ids} id={id} />
               </div>

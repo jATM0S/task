@@ -78,7 +78,7 @@ const Box3 = ({ active = false }: { active: boolean }) => {
         />
       </div>
 
-      <div ref={numberRef}>
+      <div ref={numberRef} className="text-primary">
         <p
           className={`font-heading absolute top-[283px] left-[46px] text-center text-[150px] font-bold`}
         >
@@ -91,7 +91,7 @@ const Box3 = ({ active = false }: { active: boolean }) => {
 
       <div
         ref={descriptionRef}
-        className={`- absolute top-[85px] left-[24px] flex -rotate-z-90 ${active ? "w-[278px]" : "w-[218px]"} flex-col gap-3`}
+        className={`text-primary absolute top-[85px] left-[24px] flex -rotate-z-90 ${active ? "w-[278px]" : "w-[218px]"} flex-col gap-3`}
       >
         <p className="w-full text-[32px] font-bold whitespace-nowrap">
           Ongoing{!active && <br />} Courses
