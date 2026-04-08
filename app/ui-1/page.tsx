@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./_components/card";
 import Card1 from "./_components/card1";
+import Card2 from "./_components/card2";
 
 const Ui1Task = () => {
   return (
@@ -23,25 +24,7 @@ const Ui1Task = () => {
 
         <div className="grid grid-cols-2 gap-x-8 gap-y-10">
           <Card1 />
-          <Card
-            textAlign="left"
-            textWidth={351}
-            bgColor="#5492A0"
-            title="Learn by Doing"
-            subTitle="Practical skills, real projects."
-            description="
-                Theory is great, but action is better. At SkillShikshya, you learn by doing. Hands-on projects and real-world scenarios help you build, break, and create—leading to true mastery."
-            image={{
-              src: "/images/card2.svg",
-              alt: "Descriptive alt text",
-              width: 180.35,
-              height: 367,
-              position: {
-                top: 14,
-                left: 380,
-              },
-            }}
-          />
+          <Card2 />
           <Card
             textAlign="right"
             textWidth={311}
