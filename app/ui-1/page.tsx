@@ -2,6 +2,7 @@ import React from "react";
 import Card from "./_components/card";
 import Card1 from "./_components/card1";
 import Card2 from "./_components/card2";
+import PageHeader from "@/components/page-header";
 
 const Ui1Task = () => {
   return (
@@ -10,18 +11,11 @@ const Ui1Task = () => {
         Note: Hover the component to view the animation & Click the arrow icon
       </p>
       <div className="px-[113.5px]">
-        <div className="mb-[48px] flex flex-col gap-[24px]">
-          <p className="text-[24px] leading-[1] font-medium text-[#414141]">
-            Your SkillShikshya Journey
-          </p>
-
-          <h1 className="font-heading text-[32px] leading-[1.2] font-bold">
-            <span className="text-[#1DA077]">Step</span> In.{" "}
-            <span className="text-[#1DA077]">Skill</span> Up.{" "}
-            <span className="text-[#1DA077]">Stand</span> Out. 🚀
-          </h1>
-        </div>
-
+        <PageHeader subTitle="Your SkillShikshya Journey">
+          <span className="text-[#1DA077]">Step</span> In.{" "}
+          <span className="text-[#1DA077]">Skill</span> Up.{" "}
+          <span className="text-[#1DA077]">Stand</span> Out. 🚀
+        </PageHeader>
         <div className="grid grid-cols-2 gap-x-8 gap-y-10">
           <Card1 />
           <Card2 />

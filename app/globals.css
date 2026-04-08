@@ -55,9 +55,9 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: #c33241;
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --secondary: #f9ebec;
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -140,3 +140,35 @@
 .float-animation {
   animation: floatUpDown 3s ease-in-out infinite;
 }
+
+/* @keyframes shrinkThenGrow {
+  0% {
+    width: 100px;
+  }
+  30% {
+    width: 80px;
+  }
+  100% {
+    width: 200px;
+  }
+}
+
+.shrink {
+  animation: shrinkThenGrow 0.4s ease forwards;
+}
+
+@keyframes growThenShrink {
+  0% {
+    width: 200px;
+  }
+  30% {
+    width: 220px;
+  }
+  100% {
+    width: 100px;
+  }
+}
+
+.grow {
+  animation: growThenShrink 0.4s ease forwards;
+} */
