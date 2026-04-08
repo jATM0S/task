@@ -18,11 +18,9 @@ const Card2default = ({ onNextClick }: Card2defaultProps) => {
           {/* button was extracted due to stacking context issue the image would be on top of the button */}
           <CardButtons onNextClick={onNextClick} />
 
-          <div className="z-10 mt-[36px] ml-[80px]">
-            <p className="font-heading max-w-[241px] text-[20px] leading-[1.2] font-bold text-white">
-              Focused faces—learning mode: ON!{" "}
-            </p>
-          </div>
+          <p className="font-heading z-10 mt-[36px] ml-[80px] max-w-[241px] text-[20px] leading-[1.2] font-bold text-white">
+            Focused faces—learning mode: ON!{" "}
+          </p>
           <Image
             src="/images/focused.png"
             alt="Descriptive alt text"
@@ -32,7 +30,7 @@ const Card2default = ({ onNextClick }: Card2defaultProps) => {
           />
         </div>
       </div>
-      <div className="z-10 transition-all duration-700 group-hover:-translate-x-full group-hover:opacity-0">
+      <div className="pointer-events-none transition-all duration-700 group-hover:-translate-x-full group-hover:opacity-0">
         <Card
           textAlign="left"
           textWidth={351}
