@@ -21,7 +21,7 @@ export function readLocalPosts(): LocalPost[] {
   }
 }
 
-export function UpdateAllPosts(posts: LocalPost[]) {
+export function writeAllPosts(posts: LocalPost[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
 }
 
@@ -34,6 +34,25 @@ export function addLocalPost(post: Omit<LocalPost, "id" | "createdAt">) {
 
   const all = readLocalPosts();
   const updatedAllPosts = [newPost, ...all];
-  UpdateAllPosts(updatedAllPosts);
+  writeAllPosts(updatedAllPosts);
   return updatedAllPosts;
+}
+
+export function deleteLocalPost(id: string) {
+  const all = readLocalPosts();
+  const updated = all.filter((p) => p.id !== id);
+  writeAllPosts(updated);
+  return updated;
+}
+
+export function updateLocalPost(
+  id: string,
+  patch: Omit<LocalPost, "id" | "createdAt">
+) {
+  const all = readLocalPosts();
+  const updated = all.map((post) =>
+    post.id === id ? { ...post, ...patch } : post
+  );
+  writeAllPosts(updated);
+  return updated;
 }

@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 import { z } from "zod";
-import { addLocalPost, type LocalPost } from "../../../../lib/local-posts";
+import {
+  addLocalPost,
+  updateLocalPost,
+  type LocalPost,
+} from "../../../../lib/local-posts";
 
 const PostSchema = z.object({
   title: z.string().trim().min(1, "Title is required"),
@@ -11,12 +15,14 @@ const PostSchema = z.object({
 
 export default function AddPost({
   updatePosts,
+  post,
 }: {
   updatePosts?: (posts: LocalPost[]) => void;
+  post?: LocalPost;
 }) {
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState(post?.title ?? "");
+  const [body, setBody] = useState(post?.body ?? "");
   const [error, setError] = useState<string | null>(null);
 
   const onSubmit = (e: React.FormEvent) => {
@@ -27,7 +33,9 @@ export default function AddPost({
       return;
     }
 
-    const allNewPosts = addLocalPost(result.data);
+    const allNewPosts = post
+      ? updateLocalPost(post.id, result.data)
+      : addLocalPost(result.data);
     updatePosts?.(allNewPosts);
 
     setTitle("");
@@ -43,7 +51,7 @@ export default function AddPost({
         className="bg-accent rounded px-3 py-2 text-sm font-medium text-white"
         onClick={() => setOpen(true)}
       >
-        Add Post
+        {post ? "Edit" : "Add Post"}
       </button>
 
       {open ? (
@@ -58,7 +66,9 @@ export default function AddPost({
             onMouseDown={(event) => event.stopPropagation()}
           >
             <div className="mb-3 flex items-center justify-between gap-4">
-              <h2 className="text-lg font-semibold">New post</h2>
+              <h2 className="text-lg font-semibold">
+                {post ? "Edit post" : "New post"}
+              </h2>
               <button
                 type="button"
                 className="rounded border px-2 py-1 text-sm text-red-600"

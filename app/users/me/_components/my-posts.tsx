@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 import AddPost from "./add-post";
-import { readLocalPosts, type LocalPost } from "../../../../lib/local-posts";
+import {
+  deleteLocalPost,
+  readLocalPosts,
+  type LocalPost,
+} from "../../../../lib/local-posts";
 
 export default function MyPosts() {
   const [posts, setPosts] = useState<LocalPost[]>(() => readLocalPosts());
@@ -23,7 +27,20 @@ export default function MyPosts() {
               <div className="text-muted-foreground mb-1 text-xs">
                 {new Date(p.createdAt).toLocaleString()}
               </div>
-              <h3 className="font-semibold">{p.title}</h3>
+
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="font-semibold">{p.title}</h3>
+                <div className="flex shrink-0 items-center gap-2">
+                  <AddPost post={p} updatePosts={setPosts} />
+                  <button
+                    type="button"
+                    className="rounded border px-3 py-2 text-sm text-red-600"
+                    onClick={() => setPosts(deleteLocalPost(p.id))}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
               <p className="mt-2 text-sm">{p.body}</p>
             </li>
           ))}
