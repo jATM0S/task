@@ -12,9 +12,9 @@ const Ui1Task = () => {
       </p>
       <div className="px-[113.5px]">
         <PageHeader subTitle="Your SkillShikshya Journey">
-          <span className="text-[#1DA077]">Step</span> In.{" "}
-          <span className="text-[#1DA077]">Skill</span> Up.{" "}
-          <span className="text-[#1DA077]">Stand</span> Out. 🚀
+          <span className="text-accent">Step</span> In.{" "}
+          <span className="text-accent">Skill</span> Up.{" "}
+          <span className="text-accent">Stand</span> Out. 🚀
         </PageHeader>
         <div className="grid grid-cols-2 gap-x-8 gap-y-10">
           <Card1 />

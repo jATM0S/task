@@ -14,7 +14,7 @@ export default function NavCard({ href, title, description }: NavCardProps) {
     >
       <div className="mb-2 flex items-center justify-between">
         <p className="text-[18px] font-semibold text-[#111111]">{title}</p>
-        <span className="text-[#1DA077] transition group-hover:translate-x-0.5">
+        <span className="text-accent transition group-hover:translate-x-0.5">
           →
         </span>
       </div>

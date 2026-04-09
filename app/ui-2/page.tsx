@@ -54,7 +54,7 @@ const Ui2Task = () => {
       <div className="px-[112px]">
         <PageHeader subTitle="Explore our classes and master trending skills!">
           Dive Into
-          <span className="text-[#1DA077]"> What’s Hot Right Now! 🔥</span>
+          <span className="text-accent"> What’s Hot Right Now! 🔥</span>
         </PageHeader>
 
         <div className="flex h-[461px] items-start gap-8">
