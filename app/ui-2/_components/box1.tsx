@@ -59,7 +59,8 @@ const Box1 = ({ active }: { active: boolean }) => {
     }
     gsap.to([numberRef.current, descriptionRef.current], {
       color: active ? "#f9ebec" : "#c33241",
-      duration: 0.6,
+      duration: 1.5,
+      ease: "power2.inOut",
     });
   }, [active]);
   return (

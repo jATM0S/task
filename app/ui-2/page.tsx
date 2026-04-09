@@ -80,7 +80,7 @@ const Ui2Task = () => {
                     height: 120,
                     transformOrigin: "left bottom",
                     transform: active ? "scale(0)" : "scale(8)",
-                    transition: "transform 1300ms ease",
+                    transition: "transform 1300ms ease-in-out",
                   }}
                 />
                 <Component active={active} />
