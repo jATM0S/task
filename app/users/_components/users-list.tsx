@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fetchUsers } from "@/lib/server/jsonPlaceholder";
+import Pagination from "@/components/pagination";
 
 type Props = {
   q?: string;
@@ -35,29 +36,13 @@ export default async function UsersList({ q, page = 1, perPage = 5 }: Props) {
 
   return (
     <>
-      <div className="text-muted-foreground mb-3 flex items-center justify-between text-sm">
-        <span>
-          Page {safePage} of {totalPages} ({total} users)
-        </span>
-        <div className="flex gap-2">
-          <Link
-            aria-disabled={safePage <= 1}
-            tabIndex={safePage <= 1 ? -1 : 0}
-            className={`rounded border px-2 py-1 ${safePage <= 1 ? "pointer-events-none opacity-50" : ""}`}
-            href={buildHref(safePage - 1)}
-          >
-            Prev
-          </Link>
-          <Link
-            aria-disabled={safePage >= totalPages}
-            tabIndex={safePage >= totalPages ? -1 : 0}
-            className={`rounded border px-2 py-1 ${safePage >= totalPages ? "pointer-events-none opacity-50" : ""}`}
-            href={buildHref(safePage + 1)}
-          >
-            Next
-          </Link>
-        </div>
-      </div>
+      <Pagination
+        page={safePage}
+        totalPages={totalPages}
+        totalItems={total}
+        label="users"
+        buildHref={buildHref}
+      />
 
       <ul className="space-y-3">
         {paged.map((u) => (

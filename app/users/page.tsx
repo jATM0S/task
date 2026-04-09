@@ -31,7 +31,7 @@ export default async function UsersPage({ searchParams }: Props) {
           <div>
             <div className="font-semibold">You</div>
             <div className="text-muted-foreground text-sm">
-              Go to your blog page
+              Go to your blog page to add, delete, or edit your posts.
             </div>
           </div>
           <span className="text-sm underline">Open</span>
