@@ -4,12 +4,14 @@ import UsersList from "./_components/users-list";
 import UsersSkeleton from "./_components/users-skeleton";
 
 type Props = {
-  searchParams?: Promise<{ q?: string }>;
+  searchParams?: Promise<{ q?: string; page?: string; perPage?: string }>;
 };
 
 export default async function UsersPage({ searchParams }: Props) {
   const sp = (await searchParams) ?? {};
   const query = sp.q;
+  const page = Number(sp.page) || 1;
+  const perPage = Number(sp.perPage) || 5;
 
   return (
     <main className="p-8">
@@ -22,7 +24,7 @@ export default async function UsersPage({ searchParams }: Props) {
       </div>
 
       <Suspense fallback={<UsersSkeleton />}>
-        <UsersList q={query} />
+        <UsersList q={query} page={page} perPage={perPage} />
       </Suspense>
     </main>
   );
