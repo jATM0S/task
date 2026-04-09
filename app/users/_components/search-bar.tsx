@@ -27,7 +27,7 @@ export default function SearchBar({ placeholder }: Props) {
     if (next) url.set("q", next);
     else url.delete("q");
     router.replace(`${pathname}?${url.toString()}`);
-  }, [debounced, pathname, router]);
+  }, [debounced, pathname, params, router]);
 
   return (
     <input
