@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import MyPosts from "./_components/my-posts";
+
+export const metadata: Metadata = {
+  title: "You",
+};
 
 export default function MyBlogPage() {
   return (

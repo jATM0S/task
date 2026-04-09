@@ -1,8 +1,13 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import SearchBar from "./_components/search-bar";
 import UsersList from "./_components/users-list";
 import UsersSkeleton from "./_components/users-skeleton";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Users",
+};
 
 type Props = {
   searchParams?: Promise<{ q?: string; page?: string; perPage?: string }>;

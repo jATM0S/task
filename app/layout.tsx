@@ -33,7 +33,10 @@ const nohemi = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Vrit task",
+  title: {
+    default: "Vrit task",
+    template: "%s • Vrit task",
+  },
   description: "Done by Bikesh Maharjan",
 };
 
@@ -48,7 +51,7 @@ export default function RootLayout({
       className={`${outfit.variable} ${nohemi.variable} ${fustad.variable} antialiased`}
     >
       <body className="font-body">
-        <div className="mx-auto flex min-h-screen w-full max-w-[1440px] flex-col">
+        <div className="mx-auto flex min-h-screen w-full max-w-360 flex-col">
           {children}
         </div>
       </body>
